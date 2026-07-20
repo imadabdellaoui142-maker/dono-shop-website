@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DONO SHOP | Best Toy & Gift Store in Tlemcen</title>
+<meta name="description" content="Discover the cutest gifts for everyone at DONO SHOP. Premium plush toys, teddy bears, toy cars, decorations & trendy gifts for kids and adults in Tlemcen, Algeria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #FF6FAF; --pink-dark: #e05a9a; --blue: #8ED6FF; --yellow: #FFD700; --yellow-hover: #E6C200;
+  --cream: #FFF8F5; --light-gray: #F5F7FA; --dark: #1A1A2E; --dark-card: #16213E;
+  --white: #ffffff; --text: #1A1A2E; --text-muted: #6B7280; --border: #E5E7EB;
+  --radius: 1.5rem; --radius-sm: 1rem; --shadow: 0 8px 32px rgba(0,0,0,0.06); --shadow-glow: 0 0 40px rgba(255,111,175,0.15);
+}
+.dark { --cream: #1A1A2E; --light-gray: #16213E; --text: #ffffff; --text-muted: #9CA3AF; --border: rgba(255,255,255,0.1); --white: #16213E; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--cream); color:var(--text); transition:background 0.3s,color 0.3s; overflow-x:hidden; }
+h1,h2,h3,h4,h5,h6 { font-family:'Poppins',sans-serif; font-weight:700; letter-spacing:-0.02em; }
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--pink); border-radius:4px; }
+::selection { background:rgba(255,111,175,0.3); }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+@keyframes float-slow { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-15px) rotate(5deg)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+@keyframes scaleIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+.animate-float { animation:float 6s ease-in-out infinite; }
+.reveal { opacity:0; transform:translateY(40px); transition:all 0.7s ease-out; }
+.reveal.active { opacity:1; transform:translateY(0); }
+.container { max-width:1280px; margin:0 auto; padding:0 1.5rem; }
+.text-gradient { background:linear-gradient(135deg,var(--pink),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.glass { background:rgba(255,255,255,0.7); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.2); }
+.dark .glass { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); }
+.btn-primary { display:inline-flex; align-items:center; gap:0.5rem; padding:1rem 2rem; border-radius:var(--radius-sm); background:var(--pink); color:white; font-weight:600; text-decoration:none; border:none; cursor:pointer; box-shadow:var(--shadow-glow); transition:all 0.3s; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 40px rgba(255,111,175,0.3); }
+.btn-secondary { display:inline-flex; align-items:center; gap:0.5rem; padding:1rem 2rem; border-radius:var(--radius-sm); background:var(--white); color:var(--text); font-weight:600; text-decoration:none; border:1px solid var(--border); transition:all 0.3s; }
+.btn-secondary:hover { box-shadow:var(--shadow); }
+.btn-yellow { display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.5rem; border-radius:var(--radius-sm); background:var(--yellow); color:var(--dark); font-weight:600; text-decoration:none; border:none; cursor:pointer; transition:all 0.3s; }
+.btn-yellow:hover { background:var(--yellow-hover); }
+.section-title { font-size:clamp(1.75rem,4vw,3rem); text-align:center; margin-bottom:0.75rem; }
+.section-subtitle { text-align:center; color:var(--text-muted); max-width:600px; margin:0 auto 3rem; font-size:1.1rem; line-height:1.6; }
+.section-line { width:80px; height:6px; border-radius:3px; background:linear-gradient(90deg,var(--pink),var(--blue)); margin:0 auto 3rem; }
+
+/* Navbar */
+.navbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.25rem 0; transition:all 0.3s; }
+.navbar.scrolled { padding:0.75rem 0; background:rgba(255,255,255,0.85); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:var(--shadow); }
+.dark .navbar.scrolled { background:rgba(22,33,62,0.85); }
+.navbar .container { display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+.logo-icon { width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--pink),var(--blue)); display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-family:'Poppins',sans-serif; }
+.logo-text { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.25rem; color:var(--text); }
+.logo-text span { color:var(--pink); }
+.nav-links { display:flex; gap:2rem; align-items:center; }
+.nav-links a { text-decoration:none; color:var(--text-muted); font-size:0.9rem; font-weight:500; position:relative; transition:color 0.3s; }
+.nav-links a:hover { color:var(--pink); }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--pink); border-radius:2px; transition:width 0.3s; }
+.nav-links a:hover::after { width:100%; }
+.nav-actions { display:flex; gap:0.75rem; align-items:center; }
+.icon-btn { width:40px; height:40px; border-radius:12px; border:none; background:transparent; color:var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
+.icon-btn:hover { background:rgba(255,111,175,0.1); }
+.mobile-toggle { display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; }
+
+/* Mobile Menu */
+.mobile-menu { position:fixed; inset:0; z-index:99; background:var(--cream); padding:6rem 2rem 2rem; transform:translateX(100%); transition:transform 0.4s ease; }
+.mobile-menu.open { transform:translateX(0); }
+.mobile-menu a { display:flex; align-items:center; gap:1rem; padding:1rem; border-radius:var(--radius-sm); text-decoration:none; color:var(--text); font-weight:500; font-size:1.1rem; }
+.mobile-menu a:hover { background:rgba(255,111,175,0.1); }
+
+/* Hero */
+.hero { min-height:100vh; display:flex; align-items:center; padding-top:5rem; position:relative; overflow:hidden; background:var(--cream); }
+.hero-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.hero-blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.4; }
+.hero-blob.pink { width:300px; height:300px; background:var(--pink); top:10%; left:5%; animation:float 8s infinite; }
+.hero-blob.blue { width:400px; height:400px; background:var(--blue); bottom:10%; right:5%; animation:float 10s infinite reverse; }
+.hero-blob.yellow { width:250px; height:250px; background:var(--yellow); top:40%; left:40%; opacity:0.15; animation:float 6s infinite 1s; }
+.hero-emoji { position:absolute; font-size:2.5rem; opacity:0.15; pointer-events:none; }
+.hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem; border-radius:999px; background:rgba(255,111,175,0.1); color:var(--pink); font-size:0.875rem; font-weight:500; margin-bottom:1.5rem; }
+.hero h1 { font-size:clamp(2.5rem,5vw,4.5rem); line-height:1.1; margin-bottom:1.5rem; }
+.hero p { font-size:1.15rem; color:var(--text-muted); line-height:1.7; max-width:500px; margin-bottom:2rem; }
+.hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; }
+.hero-image-wrap { position:relative; }
+.hero-image { position:relative; aspect-ratio:1/1; border-radius:var(--radius); overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,0.15); animation:float 5s ease-in-out infinite; }
+.hero-image img { width:100%; height:100%; object-fit:cover; }
+.hero-float-card { position:absolute; padding:1rem 1.25rem; border-radius:var(--radius-sm); background:white; box-shadow:var(--shadow); display:flex; align-items:center; gap:0.75rem; animation:float 4s ease-in-out infinite; }
+.hero-float-card.left { bottom:-10px; left:-20px; animation-delay:1s; }
+.hero-float-card.right { top:-10px; right:-20px; animation-delay:0.5s; }
+.hero-customers { display:flex; align-items:center; gap:1rem; margin-top:2.5rem; }
+.customer-avatars { display:flex; }
+.customer-avatars span { width:36px; height:36px; border-radius:50%; border:2px solid white; background:linear-gradient(135deg,var(--pink),var(--blue)); color:white; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:bold; margin-left:-10px; }
+.customer-avatars span:first-child { margin-left:0; }
+
+/* Categories */
+.categories { padding:5rem 0; background:white; }
+.dark .categories { background:var(--dark); }
+.cat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1.5rem; }
+.cat-card { padding:2rem 1.5rem; border-radius:var(--radius); background:var(--white); border:1px solid var(--border); text-align:center; cursor:pointer; transition:all 0.3s; text-decoration:none; color:var(--text); }
+.cat-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-glow); border-color:rgba(255,111,175,0.2); }
+.cat-card .emoji { font-size:2.5rem; margin-bottom:1rem; display:block; }
+.cat-card h3 { font-size:1.1rem; margin-bottom:0.25rem; }
+.cat-card p { font-size:0.8rem; color:var(--text-muted); }
+.cat-card .explore { color:var(--pink); font-size:0.85rem; font-weight:500; margin-top:0.75rem; opacity:0; transition:opacity 0.3s; }
+.cat-card:hover .explore { opacity:1; }
+
+/* Products */
+.products { padding:5rem 0; background:var(--light-gray); }
+.dark .products { background:var(--dark); }
+.filter-bar { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
+.filter-btn { padding:0.6rem 1.25rem; border-radius:999px; border:1px solid var(--border); background:var(--white); color:var(--text-muted); font-weight:500; cursor:pointer; transition:all 0.3s; }
+.filter-btn.active { background:var(--pink); color:white; border-color:var(--pink); box-shadow:var(--shadow-glow); }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; }
+.product-card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); transition:all 0.4s; }
+.product-card:hover { box-shadow:var(--shadow-glow); transform:translateY(-5px); }
+.product-img { position:relative; height:260px; overflow:hidden; background:var(--light-gray); }
+.product-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s; }
+.product-card:hover .product-img img { transform:scale(1.1); }
+.product-badge { position:absolute; top:12px; left:12px; padding:0.35rem 0.75rem; border-radius:999px; background:var(--yellow); color:var(--dark); font-size:0.7rem; font-weight:700; z-index:2; }
+.product-wishlist { position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.8); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; font-size:1rem; }
+.product-info { padding:1.25rem; }
+.stars { display:flex; gap:0.15rem; margin-bottom:0.5rem; }
+.star { color:var(--yellow); font-size:0.85rem; }
+.product-info h3 { font-size:1.05rem; margin-bottom:0.35rem; }
+.product-info p { font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5; }
+.product-bottom { display:flex; align-items:center; justify-content:space-between; }
+.product-price { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.25rem; color:var(--pink); }
+.product-order { padding:0.6rem 1rem; border-radius:var(--radius-sm); background:var(--dark); color:white; font-size:0.8rem; font-weight:500; text-decoration:none; display:flex; align-items:center; gap:0.35rem; }
+.dark .product-order { background:white; color:var(--dark); }
+
+/* About */
+.about { padding:5rem 0; background:white; }
+.dark .about { background:var(--dark); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.about-img { position:relative; border-radius:var(--radius); overflow:hidden; aspect-ratio:4/5; }
+.about-img img { width:100%; height:100%; object-fit:cover; }
+.about-float { position:absolute; bottom:-15px; right:-15px; padding:1rem 1.25rem; border-radius:var(--radius-sm); background:white; box-shadow:var(--shadow); display:flex; align-items:center; gap:0.75rem; animation:float 4s infinite; }
+.about-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem; border-radius:999px; background:rgba(142,214,255,0.1); color:var(--blue); font-size:0.875rem; font-weight:500; margin-bottom:1rem; }
+.about h2 { font-size:clamp(2rem,4vw,3rem); line-height:1.15; margin-bottom:1.5rem; }
+.about p { color:var(--text-muted); line-height:1.7; margin-bottom:1rem; font-size:1.05rem; }
+.about-features { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:1.5rem; }
+.about-feature { display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; font-weight:500; }
+.about-feature .dot { width:8px; height:8px; border-radius:50%; background:var(--pink); }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:4rem; }
+.stat-card { text-align:center; padding:1.5rem; border-radius:var(--radius); background:var(--light-gray); }
+.stat-card .stat-icon { font-size:1.75rem; margin-bottom:0.5rem; }
+.stat-card .stat-num { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.5rem; }
+.stat-card .stat-label { font-size:0.85rem; color:var(--text-muted); }
+
+/* Why */
+.why { padding:5rem 0; background:var(--light-gray); position:relative; overflow:hidden; }
+.dark .why { background:var(--dark); }
+.why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; }
+.why-card { padding:2rem; border-radius:var(--radius); background:var(--white); border:1px solid var(--border); transition:all 0.3s; }
+.why-card:hover { transform:translateY(-5px); border-color:rgba(255,111,175,0.2); }
+.why-icon { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1.25rem; color:white; }
+.why-card h3 { font-size:1.15rem; margin-bottom:0.5rem; }
+.why-card p { font-size:0.9rem; color:var(--text-muted); line-height:1.6; }
+
+/* Gallery */
+.gallery { padding:5rem 0; background:var(--light-gray); }
+.dark .gallery { background:var(--dark); }
+.gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
+.gallery-item { position:relative; border-radius:var(--radius-sm); overflow:hidden; cursor:pointer; aspect-ratio:1/1; }
+.gallery-item.tall { grid-row:span 2; aspect-ratio:3/4; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s; }
+.gallery-item:hover img { transform:scale(1.1); }
+.gallery-overlay { position:absolute; inset:0; background:rgba(255,111,175,0); display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
+.gallery-item:hover .gallery-overlay { background:rgba(255,111,175,0.2); }
+.gallery-overlay svg { width:32px; height:32px; color:white; opacity:0; transition:opacity 0.3s; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.gallery-item:hover .gallery-overlay svg { opacity:1; }
+
+/* Lightbox */
+.lightbox { position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; backdrop-filter:blur(10px); }
+.lightbox.active { display:flex; }
+.lightbox img { max-width:90%; max-height:85vh; border-radius:var(--radius-sm); object-fit:contain; }
+.lightbox-close, .lightbox-prev, .lightbox-next { position:absolute; background:rgba(255,255,255,0.1); border:none; color:white; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.5rem; transition:background 0.3s; }
+.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background:rgba(255,255,255,0.25); }
+.lightbox-close { top:20px; right:20px; }
+.lightbox-prev { left:20px; top:50%; transform:translateY(-50%); }
+.lightbox-next { right:20px; top:50%; transform:translateY(-50%); }
+.lightbox-dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px; }
+.lightbox-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.4); transition:all 0.3s; }
+.lightbox-dot.active { background:white; width:24px; border-radius:4px; }
+
+/* Testimonials */
+.testimonials { padding:5rem 0; background:var(--light-gray); }
+.dark .testimonials { background:var(--dark); }
+.testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; }
+.testi-card { padding:2rem; border-radius:var(--radius); background:var(--white); border:1px solid var(--border); position:relative; transition:all 0.3s; }
+.testi-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); }
+.testi-quote { position:absolute; top:1.5rem; right:1.5rem; font-size:3rem; color:var(--pink); opacity:0.15; line-height:1; font-family:serif; }
+.testi-stars { display:flex; gap:0.15rem; margin-bottom:1rem; }
+.testi-text { font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; color:var(--text); }
+.testi-author { display:flex; align-items:center; gap:0.75rem; }
+.testi-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:0.9rem; font-family:'Poppins',sans-serif; }
+.testi-name { font-weight:600; font-size:0.9rem; }
+.testi-role { font-size:0.8rem; color:var(--text-muted); }
+
+/* Location */
+.location { padding:5rem 0; background:white; }
+.dark .location { background:var(--dark); }
+.location-grid { display:grid; grid-template-columns:2fr 3fr; gap:2rem; }
+.location-info { display:flex; flex-direction:column; gap:1rem; }
+.info-card { padding:1.5rem; border-radius:var(--radius); background:var(--light-gray); display:flex; align-items:flex-start; gap:1rem; }
+.info-card .info-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
+.info-card h4 { font-size:1rem; margin-bottom:0.25rem; }
+.info-card p, .info-card a { font-size:0.9rem; color:var(--text-muted); text-decoration:none; }
+.info-card a:hover { color:var(--pink); }
+.map-wrap { border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); min-height:400px; position:relative; background:var(--light-gray); }
+.map-wrap iframe { width:100%; height:100%; border:0; position:absolute; inset:0; }
+.map-badge { position:absolute; bottom:15px; left:15px; padding:0.5rem 1rem; border-radius:var(--radius-sm); background:rgba(255,255,255,0.9); backdrop-filter:blur(10px); font-size:0.85rem; font-weight:500; }
+
+/* Footer */
+.footer { padding:4rem 0 2rem; background:var(--white); border-top:1px solid var(--border); }
+.dark .footer { background:var(--dark-card); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr; gap:3rem; }
+.footer-brand p { color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin:1rem 0; }
+.socials { display:flex; gap:0.75rem; }
+.social { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:1.1rem; transition:all 0.3s; }
+.social.ig { background:rgba(255,111,175,0.1); color:var(--pink); }
+.social.ig:hover { background:var(--pink); color:white; }
+.social.fb { background:rgba(142,214,255,0.1); color:var(--blue); }
+.social.fb:hover { background:var(--blue); color:white; }
+.social.wa { background:rgba(37,211,102,0.1); color:#25D366; }
+.social.wa:hover { background:#25D366; color:white; }
+.footer h4 { font-size:1rem; margin-bottom:1.25rem; }
+.footer-links { list-style:none; }
+.footer-links li { margin-bottom:0.75rem; }
+.footer-links a { color:var(--text-muted); text-decoration:none; font-size:0.9rem; transition:color 0.3s; }
+.footer-links a:hover { color:var(--pink); }
+.newsletter { display:flex; gap:0.5rem; }
+.newsletter input { flex:1; padding:0.75rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--light-gray); color:var(--text); outline:none; font-size:0.9rem; }
+.newsletter button { padding:0.75rem 1.25rem; border-radius:var(--radius-sm); background:var(--pink); color:white; border:none; font-weight:500; cursor:pointer; }
+.footer-bottom { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--text-muted); }
+
+/* WhatsApp Float */
+.whatsapp-float { position:fixed; bottom:25px; right:25px; z-index:90; }
+.whatsapp-btn { width:60px; height:60px; border-radius:50%; background:#25D366; color:white; border:none; display:flex; align-items:center; justify-content:center; font-size:1.75rem; cursor:pointer; box-shadow:0 4px 15px rgba(37,211,102,0.4); transition:transform 0.3s; }
+.whatsapp-btn:hover { transform:scale(1.1); }
+.whatsapp-chat { position:absolute; bottom:75px; right:0; width:280px; padding:1.25rem; border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); border:1px solid var(--border); display:none; }
+.whatsapp-chat.active { display:block; animation:scaleIn 0.3s ease; }
+.whatsapp-chat h4 { font-size:0.95rem; margin-bottom:0.5rem; }
+.whatsapp-chat p { font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem; }
+.whatsapp-chat a { display:block; text-align:center; padding:0.75rem; border-radius:var(--radius-sm); background:#25D366; color:white; text-decoration:none; font-weight:500; font-size:0.9rem; }
+
+/* Responsive */
+@media (max-width:1024px) {
+  .hero-grid, .about-grid, .location-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:768px) {
+  .nav-links, .nav-actions .hide-mobile { display:none; }
+  .mobile-toggle { display:block; }
+  .hero { padding-top:6rem; text-align:center; }
+  .hero p { margin-left:auto; margin-right:auto; }
+  .hero-buttons { justify-content:center; }
+  .hero-customers { justify-content:center; }
+  .hero-image-wrap { max-width:400px; margin:0 auto; }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .footer-grid { grid-template-columns:1fr; gap:2rem; }
+  .footer-bottom { flex-direction:column; gap:0.5rem; text-align:center; }
+  .cat-grid { grid-template-columns:repeat(2,1fr); }
+  .about-features { grid-template-columns:1fr; }
+  .lightbox-prev, .lightbox-next { display:none; }
+}
+@media (max-width:480px) {
+  .cat-grid { grid-template-columns:1fr 1fr; }
+  .product-grid { grid-template-columns:1fr; }
+  .testi-grid { grid-template-columns:1fr; }
+  .why-grid { grid-template-columns:1fr; }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="logo">
+      <div class="logo-icon">D</div>
+      <div class="logo-text">DONO <span>SHOP</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Visit Us</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleSearch()" aria-label="Search">🔍</button>
+      <button class="icon-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span id="darkIcon">🌙</span></button>
+      <a href="https://wa.me/213672969154" target="_blank" class="btn-yellow hide-mobile">Order Now</a>
+      <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="toggleMenu()">🏠 Home</a>
+  <a href="#categories" onclick="toggleMenu()">📂 Categories</a>
+  <a href="#products" onclick="toggleMenu()">🛍️ Products</a>
+  <a href="#about" onclick="toggleMenu()">ℹ️ About</a>
+  <a href="#gallery" onclick="toggleMenu()">📸 Gallery</a>
+  <a href="#location" onclick="toggleMenu()">📍 Visit Us</a>
+  <a href="https://wa.me/213672969154" target="_blank" class="btn-yellow" style="margin-top:1rem;justify-content:center;">💬 Order on WhatsApp</a>
+</div>
+
+<!-- Search Overlay -->
+<div id="searchOverlay" style="display:none;position:fixed;inset:0;z-index:101;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);align-items:flex-start;justify-content:center;padding-top:8rem;" onclick="toggleSearch()">
+  <div class="glass" style="width:90%;max-width:600px;padding:0.5rem;border-radius:var(--radius);display:flex;align-items:center;gap:0.75rem;box-shadow:var(--shadow-glow);" onclick="event.stopPropagation()">
+    <span style="color:var(--pink);font-size:1.25rem;">🔍</span>
+    <input type="text" placeholder="Search plushies, toys, gifts..." style="flex:1;background:transparent;border:none;outline:none;font-size:1.1rem;color:var(--text);padding:0.75rem 0;">
+    <button onclick="toggleSearch()" class="icon-btn" style="background:var(--pink);color:white;">✕</button>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-blob pink"></div>
+    <div class="hero-blob blue"></div>
+    <div class="hero-blob yellow"></div>
+    <div class="hero-emoji" style="top:20%;left:15%;animation:float-slow 5s infinite;">🧸</div>
+    <div class="hero-emoji" style="top:30%;left:75%;animation:float-slow 6s infinite 1s;">🎁</div>
+    <div class="hero-emoji" style="top:60%;left:10%;animation:float-slow 7s infinite 0.5s;">🚗</div>
+    <div class="hero-emoji" style="top:70%;left:80%;animation:float-slow 4s infinite 2s;">🎈</div>
+    <div class="hero-emoji" style="top:45%;left:50%;animation:float-slow 8s infinite 1.5s;">🧩</div>
+  </div>
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="hero-badge">✨ Tlemcen's Favorite Toy Store</div>
+      <h1>Discover the <span class="text-gradient">cutest gifts</span> for everyone</h1>
+      <p>From adorable plushies to trending toys, find the perfect surprise for your little ones, your partner, or yourself at DONO SHOP.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn-primary">Browse Collection →</a>
+        <a href="#location" class="btn-secondary">📍 Visit Our Store</a>
+      </div>
+      <div class="hero-customers">
+        <div class="customer-avatars"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+        <div>
+          <div style="font-weight:600;font-size:0.95rem;">2,700+ Happy Customers</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">Trusted by families in Tlemcen</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap reveal" style="transition-delay:0.2s;">
+      <div class="hero-image"><img src="hero-plush.jpg" alt="Cute plush toy from DONO SHOP"></div>
+      <div class="hero-float-card left glass">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(255,215,0,0.2);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🎁</div>
+        <div><div style="font-weight:600;font-size:0.85rem;">New Arrivals</div><div style="font-size:0.75rem;color:var(--text-muted);">Every week</div></div>
+      </div>
+      <div class="hero-float-card right glass">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(255,111,175,0.2);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🧸</div>
+        <div><div style="font-weight:600;font-size:0.85rem;">300+ Products</div><div style="font-size:0.75rem;color:var(--text-muted);">Curated for you</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="categories" id="categories">
+  <div class="container">
+    <h2 class="section-title reveal">Shop by Category</h2>
+    <p class="section-subtitle reveal">Explore our carefully curated collections designed to bring joy to every age.</p>
+    <div class="section-line reveal"></div>
+    <div class="cat-grid">
+      <a href="#products" class="cat-card reveal"><span class="emoji">🐻</span><h3>Plush Toys</h3><p>45+ products</p><div class="explore">Explore →</div></a>
+      <a href="#products" class="cat-card reveal" style="transition-delay:0.05s;"><span class="emoji">🚗</span><h3>Toy Cars</h3><p>30+ products</p><div class="explore">Explore →</div></a>
+      <a href="#products" class="cat-card reveal" style="transition-delay:0.1s;"><span class="emoji">🎁</span><h3>Gifts</h3><p>60+ products</p><div class="explore">Explore →</div></a>
+      <a href="#products" class="cat-card reveal" style="transition-delay:0.15s;"><span class="emoji">🧸</span><h3>Teddy Bears</h3><p>25+ products</p><div class="explore">Explore →</div></a>
+      <a href="#products" class="cat-card reveal" style="transition-delay:0.2s;"><span class="emoji">🎈</span><h3>Decorations</h3><p>40+ products</p><div class="explore">Explore →</div></a>
+      <a href="#products" class="cat-card reveal" style="transition-delay:0.25s;"><span class="emoji">🎮</span><h3>Trending Toys</h3><p>50+ products</p><div class="explore">Explore →</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products" id="products">
+  <div class="container">
+    <h2 class="section-title reveal">Featured Products</h2>
+    <p class="section-subtitle reveal">Handpicked favorites that our customers absolutely love.</p>
+    <div class="section-line reveal"></div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('plushies',this)">Plushies</button>
+      <button class="filter-btn" onclick="filterProducts('toys',this)">Toys</button>
+      <button class="filter-btn" onclick="filterProducts('gifts',this)">Gifts</button>
+      <button class="filter-btn" onclick="filterProducts('decor',this)">Decor</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-img">
+          <img src="store-front.jpg" alt="DONO SHOP store in Tlemcen">
+          <div class="about-float glass">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(255,111,175,0.2);display:flex;align-items:center;justify-content:center;">❤️</div>
+            <div><div style="font-weight:700;">Family</div><div style="font-size:0.8rem;color:var(--text-muted);">Owned</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:0.2s;">
+        <div class="about-badge">About DONO SHOP</div>
+        <h2>Bringing Smiles to <span class="text-gradient">Tlemcen</span> Since Day One</h2>
+        <p>DONO SHOP started with a simple dream: to create a magical place where everyone — from toddlers to grandparents — can find something that makes them smile. We believe gifts are not just objects; they are memories waiting to happen.</p>
+        <p>Every product in our store is handpicked for quality, cuteness, and that special wow factor. We stay ahead of trends so you always find the latest and greatest, at prices that keep you coming back.</p>
+        <div class="about-features">
+          <div class="about-feature"><div class="dot"></div>Premium Quality</div>
+          <div class="about-feature"><div class="dot"></div>Friendly Service</div>
+          <div class="about-feature"><div class="dot"></div>Latest Trends</div>
+          <div class="about-feature"><div class="dot"></div>Affordable Gifts</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-icon">❤️</div><div class="stat-num">2,700+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat-card reveal" style="transition-delay:0.1s;"><div class="stat-icon">🏆</div><div class="stat-num">300+</div><div class="stat-label">Quality Products</div></div>
+      <div class="stat-card reveal" style="transition-delay:0.2s;"><div class="stat-icon">👥</div><div class="stat-num">4</div><div class="stat-label">Years of Service</div></div>
+      <div class="stat-card reveal" style="transition-delay:0.3s;"><div class="stat-icon">📈</div><div class="stat-num">50+</div><div class="stat-label">New Items Weekly</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why" id="why">
+  <div class="container">
+    <h2 class="section-title reveal">Why Choose DONO SHOP?</h2>
+    <p class="section-subtitle reveal">We go the extra mile to make your shopping experience magical.</p>
+    <div class="section-line reveal"></div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,#FF6FAF,#f472b6);">💎</div><h3>Premium Quality</h3><p>Every product is tested and selected for durability, safety, and that premium feel.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.1s;"><div class="why-icon" style="background:linear-gradient(135deg,#8ED6FF,#67e8f9);">📚</div><h3>Large Selection</h3><p>Over 300 products across plushies, toys, gifts, and decorations for all ages.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.2s;"><div class="why-icon" style="background:linear-gradient(135deg,#FFD700,#fbbf24);">🏷️</div><h3>Affordable Prices</h3><p>Premium does not mean expensive. We keep our prices fair for every budget.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.3s;"><div class="why-icon" style="background:linear-gradient(135deg,#4ade80,#34d399);">😊</div><h3>Friendly Service</h3><p>Our team is passionate about helping you find the perfect gift with a smile.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.4s;"><div class="why-icon" style="background:linear-gradient(135deg,#a78bfa,#c084fc);">📦</div><h3>New Arrivals Weekly</h3><p>We refresh our stock constantly so there is always something new to discover.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.5s;"><div class="why-icon" style="background:linear-gradient(135deg,#fb923c,#f87171);">💡</div><h3>Perfect Gift Ideas</h3><p>Not sure what to buy? Ask us! We are experts at matching gifts to personalities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <h2 class="section-title reveal">From Our Instagram</h2>
+    <p class="section-subtitle reveal">Real moments, real products, real joy. Follow @dono_shop_13 for daily updates.</p>
+    <div class="section-line reveal"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall" onclick="openLightbox(0)"><img src="gallery-1.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(1)"><img src="gallery-2.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(2)"><img src="gallery-3.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(3)"><img src="gallery-4.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(4)"><img src="gallery-5.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item tall" onclick="openLightbox(5)"><img src="gallery-6.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(6)"><img src="gallery-7.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(7)"><img src="gallery-8.jpg" alt=""><div class="gallery-overlay"><span style="font-size:2rem;">📷</span></div></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="https://instagram.com/dono_shop_13" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.875rem 2rem;border-radius:var(--radius-sm);background:linear-gradient(135deg,#833ab4,#fd1d1d,#f77737);color:white;text-decoration:none;font-weight:600;">📷 Follow @dono_shop_13</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+  <button class="lightbox-prev" onclick="changeImage(-1)">‹</button>
+  <button class="lightbox-next" onclick="changeImage(1)">›</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-dots" id="lightboxDots"></div>
+</div>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h2 class="section-title reveal">What Our Customers Say</h2>
+    <p class="section-subtitle reveal">Real reviews from real people who love DONO SHOP.</p>
+    <div class="section-line reveal"></div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">DONO SHOP is my go-to for birthday gifts. The quality of their plushies is incredible, and my kids absolutely love them. The staff is so helpful too!</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:var(--pink);">S</div><div><div class="testi-name">Sarah M.</div><div class="testi-role">Mother of two</div></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.1s;">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">I bought a bubble gun for my nephew and he has not stopped playing with it. The prices are great and the store always has the latest trending toys.</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:var(--blue);">K</div><div><div class="testi-name">Karim B.</div><div class="testi-role">Regular Customer</div></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.2s;">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">Finally a place in Tlemcen that sells cute stuff for teenagers too! I got the cutest Kuromi car and all my friends are asking where I bought it.</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:var(--yellow);color:var(--dark);">L</div><div><div class="testi-name">Lina T.</div><div class="testi-role">Teen Shopper</div></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.3s;">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">Needed a last-minute anniversary gift. The team at DONO SHOP helped me pick the perfect teddy bear and gift box. Saved the day!</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:#a78bfa;">A</div><div><div class="testi-name">Amine D.</div><div class="testi-role">Gift Buyer</div></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.4s;">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">I love coming here for my grandchildren. The FaceBlocks educational toy was such a hit. It is wonderful to see a local shop with such quality products.</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:#fb7185;">N</div><div><div class="testi-name">Nadia H.</div><div class="testi-role">Grandmother</div></div></div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.5s;">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">Their toy car selection is impressive. I have been collecting for years and DONO SHOP consistently brings in models I cannot find anywhere else in Algeria.</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:#22d3ee;">Y</div><div><div class="testi-name">Youssef R.</div><div class="testi-role">Collector</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="location" id="location">
+  <div class="container">
+    <h2 class="section-title reveal">Visit Our Store</h2>
+    <p class="section-subtitle reveal">Come say hello! We would love to help you find the perfect gift in person.</p>
+    <div class="section-line reveal"></div>
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="info-card reveal">
+          <div class="info-icon" style="background:rgba(255,111,175,0.1);">📍</div>
+          <div><h4>Address</h4><p>Tlemcen, Algeria<br>Near LE CINQ</p></div>
+        </div>
+        <div class="info-card reveal" style="transition-delay:0.1s;">
+          <div class="info-icon" style="background:rgba(142,214,255,0.1);">📞</div>
+          <div><h4>Phone</h4><a href="tel:+213672969154">0672 96 91 54</a><br><a href="https://wa.me/213672969154" target="_blank" style="color:#25D366;font-weight:500;font-size:0.85rem;">💬 Chat on WhatsApp</a></div>
+        </div>
+        <div class="info-card reveal" style="transition-delay:0.2s;">
+          <div class="info-icon" style="background:rgba(255,215,0,0.1);">🕐</div>
+          <div><h4>Opening Hours</h4><p>Sat - Thu: 9:00 AM - 9:00 PM<br>Friday: 2:00 PM - 9:00 PM</p></div>
+        </div>
+      </div>
+      <div class="map-wrap reveal" style="transition-delay:0.2s;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.0!2d-1.315!3d34.878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDUyJzQwLjgiTiAxwrAxOCc1NC4wIlc!5e0!3m2!1sen!2sdz!4v1" allowfullscreen loading="lazy"></iframe>
+        <div class="map-badge">📍 DONO SHOP, Tlemcen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="logo-icon">D</div>
+          <div class="logo-text">DONO <span>SHOP</span></div>
+        </a>
+        <p>The best toy & gift shop in Tlemcen. Premium plushies, trendy toys, and unforgettable gifts for kids and adults since 2020.</p>
+        <div class="socials">
+          <a href="https://instagram.com/dono_shop_13" target="_blank" class="social ig">📷</a>
+          <a href="#" class="social fb">f</a>
+          <a href="https://wa.me/213672969154" target="_blank" class="social wa">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#products">Plush Toys</a></li>
+          <li><a href="#products">Toy Cars</a></li>
+          <li><a href="#products">Gift Boxes</a></li>
+          <li><a href="#products">Decorations</a></li>
+          <li><a href="#products">Trending Now</a></li>
+          <li><a href="#products">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-links">
+          <li><a href="#location">Tlemcen, Algeria</a></li>
+          <li><a href="tel:+213672969154">0672 96 91 54</a></li>
+          <li><a href="#location">Store Hours</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay Updated</h4>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Get notified about new arrivals and exclusive offers.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="Your email">
+          <button>Join</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 DONO SHOP. All rights reserved.</span>
+      <span>Made with ❤️ in Tlemcen</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<div class="whatsapp-float">
+  <div class="whatsapp-chat" id="waChat">
+    <h4>Chat with DONO SHOP</h4>
+    <p>Hi there! How can we help you find the perfect gift today?</p>
+    <a href="https://wa.me/213672969154" target="_blank">💬 Start Chat</a>
+  </div>
+  <button class="whatsapp-btn" onclick="toggleWa()">💬</button>
+</div>
+
+<script>
+// Product data
+const products = [
+  {img:'product-dolphin-blue.jpg',name:'Blue Dolphin Plush',desc:'Super soft, huggable dolphin plushie perfect for all ages.',price:'1,200 DZD',badge:'Bestseller',cat:'plushies'},
+  {img:'product-dolphin-light.jpg',name:'Sky Dolphin Plush',desc:'Adorable light blue dolphin with the softest fur.',price:'1,200 DZD',badge:'New',cat:'plushies'},
+  {img:'product-kuromi-car.jpg',name:'Kuromi Light-Up Car',desc:'Cute Kuromi figure in a purple racing car with LED lights.',price:'1,800 DZD',cat:'toys'},
+  {img:'product-toy-car.jpg',name:'Red Sports Car',desc:'Detailed die-cast sports car model for collectors.',price:'900 DZD',badge:'Popular',cat:'toys'},
+  {img:'product-bubble-gun.jpg',name:'Spider Bubble Gun',desc:'Automatic bubble blower with LED lights and music.',price:'1,500 DZD',badge:'Trending',cat:'toys'},
+  {img:'product-faceblocks.jpg',name:'FaceBlocks Puzzle',desc:'Educational emotion blocks with Truth or Dare cards.',price:'1,400 DZD',cat:'gifts'},
+  {img:'product-teddy.jpg',name:'Giant Teddy Bear',desc:'Life-sized teddy bear in sailor outfit. The ultimate gift.',price:'4,500 DZD',badge:'Premium',cat:'plushies'},
+  {img:'product-deco.jpg',name:'Home Decoration',desc:'Elegant decorative piece to brighten any room.',price:'2,200 DZD',cat:'decor'}
+];
+
+const galleryImages = [
+  'gallery-1.jpg','gallery-2.jpg','gallery-3.jpg','gallery-4.jpg',
+  'gallery-5.jpg','gallery-6.jpg','gallery-7.jpg','gallery-8.jpg'
+];
+
+let currentLightbox = 0;
+
+function renderProducts(filter='all') {
+  const grid = document.getElementById('productGrid');
+  const filtered = filter==='all' ? products : products.filter(p=>p.cat===filter);
+  grid.innerHTML = filtered.map((p,i)=>`
+    <div class="product-card reveal" style="transition-delay:${i*0.05}s">
+      <div class="product-img">
+        ${p.badge?`<div class="product-badge">${p.badge}</div>`:''}
+        <button class="product-wishlist" onclick="this.textContent=this.textContent==='❤️'?'🤍':'❤️'">🤍</button>
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="stars">${'⭐'.repeat(5)}</div>
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div class="product-bottom">
+          <span class="product-price">${p.price}</span>
+          <a href="https://wa.me/213672969154?text=Hi! I want to order: ${encodeURIComponent(p.name)}" target="_blank" class="product-order">🛒 Order</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+// Lightbox
+function openLightbox(idx) {
+  currentLightbox = idx;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightboxImg').src = galleryImages[idx];
+  updateDots();
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if(e.target===e.currentTarget || e.target.classList.contains('lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+function changeImage(dir) {
+  currentLightbox = (currentLightbox + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('lightboxImg').src = galleryImages[currentLightbox];
+  updateDots();
+}
+function updateDots() {
+  document.getElementById('lightboxDots').innerHTML = galleryImages.map((_,i)=>
+    `<div class="lightbox-dot ${i===currentLightbox?'active':''}" onclick="currentLightbox=${i};document.getElementById('lightboxImg').src=galleryImages[${i}];updateDots();"></div>`
+  ).join('');
+}
+
+// Keyboard nav for lightbox
+document.addEventListener('keydown', e=>{
+  if(document.getElementById('lightbox').classList.contains('active')) {
+    if(e.key==='Escape') closeLightbox({target:document.getElementById('lightbox'),currentTarget:document.getElementById('lightbox')});
+    if(e.key==='ArrowRight') changeImage(1);
+    if(e.key==='ArrowLeft') changeImage(-1);
+  }
+});
+
+// Scroll reveal
+function observeReveals() {
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('active'); });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>50);
+});
+
+// Mobile menu
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+// Search overlay
+function toggleSearch() {
+  const el = document.getElementById('searchOverlay');
+  el.style.display = el.style.display==='none'?'flex':'none';
+  if(el.style.display==='flex') el.querySelector('input').focus();
+}
+
+// Dark mode
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  document.getElementById('darkIcon').textContent = document.documentElement.classList.contains('dark')?'☀️':'🌙';
+  localStorage.setItem('theme', document.documentElement.classList.contains('dark')?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark') { document.documentElement.classList.add('dark'); document.getElementById('darkIcon').textContent='☀️'; }
+
+// WhatsApp toggle
+function toggleWa() { document.getElementById('waChat').classList.toggle('active'); }
+
+// Init
+renderProducts();
+observeReveals();
+</script>
+</body>
+</html>
